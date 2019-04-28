@@ -1,0 +1,47 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/customers']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="customerForm" (ngSubmit)="onFormSubmit(customerForm.value)">
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="First name" formControlName="firstName">
+        <mat-error>
+          <span *ngIf="!customerForm.get('firstName').valid && customerForm.get('firstName').touched">Please enter first name</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Last name" formControlName="lastName">
+        <mat-error>
+          <span *ngIf="!customerForm.get('lastName').valid && customerForm.get('lastName').touched">Please enter last name</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Phone number" formControlName="phoneNumber">
+        <mat-error>
+          <span ng-show="myform.price_field.$error.pattern">Not valid number! </span>
+          <span *ngIf="!customerForm.get('phoneNumber').valid && customerForm.get('phoneNumber').touched">Please enter phone number</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="email">
+        <mat-error>
+          <span *ngIf="!customerForm.get('email').valid && customerForm.get('email').touched">Please enter email</span>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-row">
+        <button type="submit" [disabled]="!customerForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>
