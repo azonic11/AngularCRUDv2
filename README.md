@@ -1,6 +1,7 @@
 # AngularCRUDv2
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+If you have not installed Angular cli, run `npm install -g @angular/cli`
 
 ## Install libraries
 
