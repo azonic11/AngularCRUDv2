@@ -2,23 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from '../services/customer.service';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Customer } from '../models/customer.model';
+import {DateValidator} from '../Validators/date.validator';
 
 @Component({
   selector: 'app-customer-add',
-  templateUrl: './customer-add.component.html',
-  styleUrls: ['./customer-add.component.css']
+  templateUrl: './customer-form.component.html',
+  styleUrls: ['./customer-form.component.css']
 })
-export class CustomerAddComponent implements OnInit {
+export class CustomerFormComponent implements OnInit {
 
   customerForm: FormGroup;
   isLoadingResults = false;
   firstName: string;
   lastName: string;
+  birthday: Date;
   phoneNumber: string;
   email: string;
   id: string;
-  customer: Customer;
 
   constructor(
     private router: Router,
@@ -29,15 +29,17 @@ export class CustomerAddComponent implements OnInit {
 
   ngOnInit() {
     this.customerForm = this.formBuilder.group({
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
-      phoneNumber: [null, [Validators.required, Validators.pattern('^\\+?[0-9]{3}-?[0-9]{6,12}$')]],
-      email: [null, [Validators.required, Validators.pattern('^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$')]]
+      firstName: [null, Validators.compose([Validators.required , Validators.maxLength(20)])],
+      lastName: [null, Validators.compose([Validators.required , Validators.maxLength(20)])],
+      birthday: [null, Validators.compose([Validators.required, DateValidator.dateVaidator])],
+      phoneNumber: [null, Validators.compose([Validators.required, Validators.pattern('^\\+?[0-9]{3}-?[0-9]{6,12}$')])],
+      email: [null, Validators.compose([Validators.required, Validators.pattern('^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$')])]
     });
     this.id = this.route.snapshot.params.id;
     if (this.id != null) {
       this.initCustomer(this.id);
     }
+
   }
 
   initCustomer(id) {
@@ -45,6 +47,7 @@ export class CustomerAddComponent implements OnInit {
         this.customerForm.setValue({
           firstName: data.firstName,
           lastName: data.lastName,
+          birthday: new Date(data.birthday),
           phoneNumber: data.phoneNumber,
           email: data.email
         });

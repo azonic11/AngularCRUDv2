@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CustomersListComponent } from './customers-list/customers-list.component';
-import { CustomerAddComponent } from './customer-form/customer-add.component';
+import { CustomerFormComponent } from './customer-form/customer-form.component';
 const routes: Routes = [
   {
     path: 'customers',
@@ -10,12 +10,12 @@ const routes: Routes = [
   },
   {
     path: 'customer-form',
-    component: CustomerAddComponent,
+    component: CustomerFormComponent,
     data: { title: 'Add Customer' }
   },
   {
     path: 'customer-form/:id',
-    component: CustomerAddComponent,
+    component: CustomerFormComponent,
     data: { title: 'Edit Customer' }
   },
   { path: '',

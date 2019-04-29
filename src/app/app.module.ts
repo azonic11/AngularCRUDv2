@@ -13,17 +13,18 @@ import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
-  MatFormFieldModule } from '@angular/material';
+  MatFormFieldModule, MatDatepickerModule, MatNativeDateModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { CustomersListComponent } from './customers-list/customers-list.component';
-import { CustomerAddComponent } from './customer-form/customer-add.component';
+import { CustomerFormComponent } from './customer-form/customer-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomersListComponent,
-    CustomerAddComponent
+    CustomerFormComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +41,10 @@ import { CustomerAddComponent } from './customer-form/customer-add.component';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

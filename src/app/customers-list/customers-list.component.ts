@@ -9,7 +9,7 @@ import {Customer} from '../models/customer.model';
 })
 export class CustomersListComponent implements OnInit {
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'phoneNumber', 'email', 'actions'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'birthday', 'phoneNumber', 'email', 'actions'];
   data: Customer[] = [];
   isLoadingResults = true;
 

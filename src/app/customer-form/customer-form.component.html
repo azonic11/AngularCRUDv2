@@ -12,29 +12,46 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="First name" formControlName="firstName">
         <mat-error>
-          <span *ngIf="!customerForm.get('firstName').valid && customerForm.get('firstName').touched">Please enter first name</span>
+          <span *ngIf="customerForm.get('firstName').hasError('maxLength')">First name is to long</span>
+          <span *ngIf="customerForm.get('firstName').hasError('required')">Please enter firstName</span>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Last name" formControlName="lastName">
         <mat-error>
-          <span *ngIf="!customerForm.get('lastName').valid && customerForm.get('lastName').touched">Please enter last name</span>
+          <span *ngIf="customerForm.get('lastName').hasError('length')">Last name is to long</span>
+          <span *ngIf="customerForm.get('lastName').hasError('required')">Please enter lastName</span>
         </mat-error>
       </mat-form-field>
+
+
+      <mat-form-field>
+        <input matInput placeholder="Birthday" formControlName="birthday" [matDatepicker]="myDatepicker" >
+        <mat-error>
+          <span *ngIf="customerForm.get('birthday').hasError('required')">Please enter birthday date</span>
+          <span *ngIf="customerForm.get('birthday').hasError('dateVaidator')">Date is to big</span>
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
+
+      </mat-form-field>
+
+
 
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Phone number" formControlName="phoneNumber">
         <mat-error>
-          <span ng-show="myform.price_field.$error.pattern">Not valid number! </span>
-          <span *ngIf="!customerForm.get('phoneNumber').valid && customerForm.get('phoneNumber').touched">Please enter phone number</span>
+          <span *ngIf="customerForm.get('phoneNumber').hasError('required')">Please enter phone number</span>
+          <span *ngIf="customerForm.get('phoneNumber').hasError('pattern')">Wrong phone number</span>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Email" formControlName="email">
         <mat-error>
-          <span *ngIf="!customerForm.get('email').valid && customerForm.get('email').touched">Please enter email</span>
+          <span *ngIf="customerForm.get('email').hasError('required')">Please enter email</span>
+          <span *ngIf="customerForm.get('email').hasError('pattern')">Wrong email</span>
         </mat-error>
       </mat-form-field>
 
